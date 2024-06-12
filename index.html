@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: aliceblue;
+            background-color: black;
+        }
+        * {
+            box-sizing: border-box;
+            top: 0;
+            left: 0;
+        }
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        .item{
+            width: 400px;
+            height: auto;
+        }
+
+        h1{
+            width: 100%;
+            text-align: center;
+        }
+
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            cursor: pointer;
+            background-color: aquamarine;
+            border-radius: 2em;
+        }
+        textarea {
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Green API Integration</h1>
+        <div class="item">
+            <form method="post" action="/getSettings">
+                <label for="idInstance">ID Instance:</label>
+                <input type="text" id="idInstance" name="idInstance" placeholder="Enter your ID Instance" 
+                value="{{if .IdInstance}}{{.IdInstance}}{{end}}" required>
+                
+                <label for="apiTokenInstance">API Token Instance:</label>
+                <input type="text" id="apiTokenInstance" name="apiTokenInstance" placeholder="Enter your API Token Instance" 
+                value="{{if .ApiTokenInstance}}{{.ApiTokenInstance}}{{end}}" required>
+                
+                <button type="submit">getSettings</button>
+            </form>
+            
+            <form method="post" action="/getStateInstance">
+                <input type="hidden" name="idInstance" id="idInstance" value="{{.IdInstance}}">
+                <input type="hidden" name="apiTokenInstance" id="apiTokenInstance" value="{{.ApiTokenInstance}}">
+                <button type="submit">getStateInstance</button>
+            </form>
+        </div>
+        <div class="item">
+            <form method="post" action="/sendMessage">
+                <label for="chatId">Chat/Group ID:</label>
+                <input type="text" id="chatId" name="chatId" placeholder="chat_id/group@c/g.us" 
+                value="{{if .ChatId}}{{.ChatId}}{{end}}"  required>
+                
+                <label for="message">Message:</label>
+                <input type="text" id="message" name="message" placeholder="Enter your message" required>
+                <button type="submit">sendMessage</button>
+            </form>
+        </div>
+        <div class="item">
+        <form method="post" action="/sendFileByUrl">           
+                <label for="chatId">Chat/Group ID:</label>
+                <input type="text" id="chatId" name="chatId" placeholder="chat_id/group@c/g.us" 
+                value="{{if .ChatId}}{{.ChatId}}{{end}}" required>
+                
+                <label for="fileUrl">File URL:</label>
+                <input type="text" id="fileUrl" name="fileUrl" placeholder="Enter the file URL-address" required>
+                
+                <label for="caption">Caption:</label>
+                <input type="text" id="caption" name="caption" placeholder="Enter caption for the file">
+                <button type="submit">sendFileByUrl</button>
+            </form>
+        </div>
+        <div style="width: 600px;">
+            <label for="response">Response:</label>
+            <textarea id="response" name="response" rows="10" readonly>{{if .Response}}{{.Response}}{{end}}</textarea>
+        </div>
+    </div>
+</body>
+</html>
