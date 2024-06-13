@@ -17,11 +17,11 @@ This project is a Go web application for sending files via the WhatsApp API.
 ## Screens
 ### Web-page
 ![web-page](images/full.png)
-1. ### getSettings
+### getSettings
 ![getSettings](images/1.png)
-2. ### getStateInstance
+### getStateInstance
 ![getStateInstance](images/2.png)
-3. sendMessage
+### sendMessage
 ![sendMessage](images/3.png)
-4. ### sendFileByUrl
+### sendFileByUrl
 ![sendFileByUrl](images/4.png)
